@@ -1,87 +1,137 @@
  PASSO A PASSO – RODAR O PROJETO EM OUTRO COMPUTADOR
- 1) O que precisa estar instalado no outro PC
+.
 
-Antes de qualquer coisa, o PC precisa ter:
+ Sistema de Monitoramento de Vacinas – README
 
-1. Java JDK 17 instalado
+Este projeto é um sistema simples desenvolvido em Java + Spring Boot + Thymeleaf + MySQL para cadastrar usuários, vacinas, efeitos adversos e um chat básico de interação.
 
-Baixe (Windows 64 bits):
+O objetivo é demonstrar:
+ Mapeamento de Entidades com JPA
+Herança (classe Pessoa → Usuario)
+Relacionamentos (OneToMany / ManyToOne)
+ Polimorfismo aplicado em classes
+Tratamento de exceções
+MVC funcionando com Templates
+Persistência no MySQL
 
- Pesquise no Google: “JDK 17 download Oracle”
-ou use: Adoptium Eclipse Temurin 17 (também funciona).
+ 1. Requisitos para rodar o projeto
 
-Depois de instalar:
+Antes de abrir o sistema, é necessário instalar:
 
-Abra o CMD e teste:
+Java 17 ou superior
 
-java -version
+https://www.oracle.com/java/technologies/downloads/
+
+ MySQL 8.0
+
+Instalar e deixar rodando.
+
+MySQL Workbench
+
+Para importar o arquivo .sql.
+
+ Eclipse ou IntelliJ
+
+Com suporte ao Spring Boot.
+
+ Maven
+
+Eclipse já tem, mas pode ser instalado separado.
+
+ 2. Importando o projeto no Eclipse
+
+Abra o Eclipse
+
+Vá em File > Import
+
+Escolha Existing Maven Project
+
+Selecione a pasta do projeto
+
+Clique em Finish
+
+Aguarde o Maven baixar as dependências
+
+ 3. Criando o Banco de Dados
+
+Abra o MySQL Workbench
+
+Crie um schema chamado:
+
+vacinaweb
 
 
-Tem que aparecer algo como:
+Vá em Server > Data Import
 
-openjdk version "17.x..."
+Selecione o arquivo:
 
-2. MySQL instalado
+ banco_vacinaweb.sql (o arquivo que você vai enviar)
 
-Versão recomendada: MySQL 8.0
+Import total.
 
-E você precisa criar o mesmo banco que usa no seu projeto:
+ 4. Configurar o arquivo application.properties
 
-Exemplo:
-
-CREATE DATABASE vacinaweb;
-
-
-Ou o nome que seu projeto usa.
-
-
-
- Configurar o application.properties
-
-No outro PC, abra:
+No caminho:
 
 src/main/resources/application.properties
 
 
-E coloque o usuário e senha do MySQL do OUTRO PC, por exemplo:
+Verifique se está assim:
 
 spring.datasource.url=jdbc:mysql://localhost:3306/vacinaweb
 spring.datasource.username=root
-spring.datasource.password=1234
-
-
- A senha pode ser diferente entre os PCs.
-
- Instalar as tabelas no MySQL
-
-Se o seu projeto já usa:
-
+spring.datasource.password=
 spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 
 
-Então o Spring cria tudo sozinho. 
+Se sua senha MySQL for diferente, alterar aqui.
 
-Se não, você deve executar seu SQL manualmente (se quiser te gero um script).
- Rodar o projeto no outro PC
+ 5. Rodando o Sistema
 
-No outro PC:
+Abra a classe:
 
-Abra o IntelliJ ou Eclipse
+src/main/java/br/com/faesa/monitorweb/vacinawebapp/VacinaWebappApplication.java
 
-Vá em:
 
- File > Open
- Abra a pasta do projeto
- Espere carregar (Maven baixar libs)
+Clique com botão direito
 
-Depois basta rodar:
+Run As > Spring Boot App
 
- VacinaWebappApplication.java
+ O sistema vai iniciar na porta 8080.
 
-E acessar:
+Acesse no navegador:
 
- http://localhost:8080
+http://localhost:8080
 
+ 6. Estrutura do Projeto
+/controller    -> controladores MVC
+/model         -> entidades (Usuario, Vacina, EfeitoAdverso, ChatMensagem...)
+/repository    -> interfaces JPA
+/templates     -> páginas HTML (Thymeleaf)
+application.properties -> configuração do banco
+pom.xml -> dependências Maven
+
+7. Demonstração dos conceitos exigidos
+ Herança
+
+Usuario extends Pessoa
+ Polimorfismo
+
+Pessoa tem métodos sobrescritos em Usuario.
+
+Relacionamentos JPA
+
+Usuario → Vacina
+
+Usuario → Efeito Adverso
+
+ChatMensagem → Usuario
+
+Tratamento de Exceções
+
+Implementado nos controllers.
 
  
  
