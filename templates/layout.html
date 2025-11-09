@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Sistema</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef1f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #2b3d52;
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav a {
+            color: #dce4ef;
+            margin-right: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: white;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #2b3d52;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            background: #2b3d52;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1f2c3d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #2b3d52;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 12px;
+            background: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover td {
+            background: #f5f7fa;
+        }
+
+        a.btn-link {
+            color: #2b3d52;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a.btn-link:hover {
+            color: #1f2c3d;
+        }
+    </style>
+</head>
+
+<body>
+
+<div th:fragment="conteudo(titulo, corpo)">
+    <header>
+        <nav>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/vacinas">Vacinas</a>
+            <a href="/efeitos">Efeitos</a>
+            <a href="/usuarios">Usuários</a>
+            <a href="/chat">Chat</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div th:insert="${corpo}"></div>
+    </div>
+</div>
+
+</body>
+</html>

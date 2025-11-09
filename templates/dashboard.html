@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: conteudo('Dashboard', ~{::conteudo})">
+
+<div th:fragment="conteudo">
+
+    <div class="card" style="text-align: center; padding: 40px;">
+
+        <h2>Sistema de Monitoramento de Vacinas</h2>
+
+        <p style="font-size: 17px; margin-top: 10px;">
+            Selecione uma opção no menu acima.
+        </p>
+
+        <br><br>
+
+        <div style="display: flex; justify-content: center; gap: 20px;">
+
+            <a href="/vacinas" class="btn-link" 
+               style="background: #2b3d52; color: white; padding: 12px 25px; border-radius: 8px;">
+                Vacinas
+            </a>
+
+            <a href="/efeitos" class="btn-link"
+               style="background: #2b3d52; color: white; padding: 12px 25px; border-radius: 8px;">
+                Efeitos Adversos
+            </a>
+
+            <a href="/usuarios" class="btn-link"
+               style="background: #2b3d52; color: white; padding: 12px 25px; border-radius: 8px;">
+                Usuários
+            </a>
+
+            <a href="/chat" class="btn-link"
+               style="background: #2b3d52; color: white; padding: 12px 25px; border-radius: 8px;">
+                Chat
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:replace="layout :: conteudo('Efeitos Adversos', ~{::conteudo})">
+
+<div th:fragment="conteudo">
+
+    <div class="card">
+        <h2>Registrar Efeito Adverso</h2>
+
+        <form action="/efeitos" method="post">
+            Descrição: <input type="text" name="descricao" required><br>
+            Intensidade: <input type="text" name="intensidade" required><br>
+            Data Relato: <input type="date" name="dataRelato"><br>
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>Relatos Registrados</h2>
+
+        <table>
+            <tr>
+                <th>Descrição</th>
+                <th>Intensidade</th>
+                <th>Data</th>
+            </tr>
+
+            <tr th:each="e : ${efeitos}">
+                <td th:text="${e.descricao}"></td>
+                <td th:text="${e.intensidade}"></td>
+                <td th:text="${e.dataRelato}"></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vacinas</title>
+</head>
+<body>
+
+<h1>Cadastro de Vacinas</h1>
+
+<form th:action="@{/vacinas/salvar}" method="post" th:object="${vacina}">
+    <input type="hidden" th:field="*{idVacina}">
+
+    <label>Nome:</label>
+    <input type="text" th:field="*{nome}" required><br>
+
+    <label>Fabricante:</label>
+    <input type="text" th:field="*{fabricante}"><br>
+
+    <label>Lote:</label>
+    <input type="text" th:field="*{lote}"><br>
+
+    <label>Doses:</label>
+    <input type="number" th:field="*{doses}" required><br>
+
+    <button type="submit">Salvar</button>
+</form>
+
+<hr>
+
+<h2>Lista de Vacinas</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Fabricante</th>
+            <th>Lote</th>
+            <th>Doses</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="v : ${vacinas}">
+            <td th:text="${v.idVacina}"></td>
+            <td th:text="${v.nome}"></td>
+            <td th:text="${v.fabricante}"></td>
+            <td th:text="${v.lote}"></td>
+            <td th:text="${v.doses}"></td>
+
+            <td>
+                <a th:href="@{/vacinas/editar/{id}(id=${v.idVacina})}">Editar</a>
+                |
+                <a th:href="@{/vacinas/excluir/{id}(id=${v.idVacina})}">Excluir</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
